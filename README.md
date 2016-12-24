@@ -58,6 +58,13 @@ sudo apt-get install -y redis-server
 
 sudo redis-server redis_master.conf 
 sudo redis-server redis_slave.conf
+
+# Check if redis server started
+ps aux | grep 'redis'
+
+# OR
+redis-cli -p [PORT]
+>> INFO
 ```
 * Execution
 ```BASH
