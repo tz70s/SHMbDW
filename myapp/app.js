@@ -24,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/kit', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -51,7 +50,6 @@ server.listen(8080, function() {
 });
 
 var io = require('socket.io');
-var os = require('os');
 var redis = require('redis');
 
 var serv_io = io.listen(server);
@@ -78,14 +76,20 @@ serv_io.sockets.on('connection', function(socket) {
 		dinning_client.get('humidity', function(err, reply) {
 			dinning_humi = reply;
 		});
+		dinning_client.get('usage', function(err, reply) {
+			dinning_cpu = reply;
+		})
 		kitchen_client.get('temperature', function(err,reply){
 			kitchen_temp = reply;
 		});
 		kitchen_client.get('humidity', function(err,reply) {
 			kitchen_humi = reply;
-		})
+		});
+		kitchen_client.get('usage', function(err,reply) {
+			kitchen_cpu = reply;
+		});
 
-		socket.emit('message', {'dinning_temp': dinning_temp, 'dinning_humi': dinning_humi, 'load': os.loadavg()[0]*25, 'kitchen_temp': kitchen_temp, 'kitchen_humi': kitchen_humi});
+		socket.emit('message', {'dinning_temp': dinning_temp, 'dinning_humi': dinning_humi, 'dinning_cpu': dinning_cpu, 'kitchen_temp': kitchen_temp, 'kitchen_humi': kitchen_humi, 'kitchent_cpu': kitchen_cpu});
 	}, 500);
 });
 

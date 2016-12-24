@@ -124,9 +124,10 @@
 		    socket.on('message', function(data) {
 				gauge1.update(data.dinning_temp);
 				gauge2.update(data.dinning_humi);
-				gauge3.update(data.load);
+				gauge3.update(data.dinning_cpu);
 				gauge4.update(data.kitchen_temp);
 				gauge5.update(data.kitchen_humi);
+				gauge6.update(data.kitchen_cpu);
 		    });
 			
 
