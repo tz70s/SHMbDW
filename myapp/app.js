@@ -50,15 +50,43 @@ server.listen(8080, function() {
 	console.log('start listen');
 });
 
-var io = require('socket.io'); // 加入 Socket.IO
+var io = require('socket.io');
 var os = require('os');
+var redis = require('redis');
 
 var serv_io = io.listen(server);
 
+var dinning_client = redis.createClient('6378', '127.0.0.1');
+var kitchen_client = redis.createClient('6379', '127.0.0.1');
+
+dinning_client.on('error', function(error) {
+	console.log(error);	
+});
+
+kitchen_client.on('error', function(error) {
+	console.log(error);	
+});
+
+var dinning_temp, dinning_humi, dinning_cpu;
+var kitchen_temp, kitchen_humi, kitchen_cpu;
+
 serv_io.sockets.on('connection', function(socket) {
 	setInterval(function() {
-		socket.emit('message', {'message': 30, 'date': 20, 'load': os.loadavg()[0]*25});
-	}, 1000);
+		dinning_client.get('temperature',function(err,reply) {
+			dinning_temp = reply;
+		});
+		dinning_client.get('humidity', function(err, reply) {
+			dinning_humi = reply;
+		});
+		kitchen_client.get('temperature', function(err,reply){
+			kitchen_temp = reply;
+		});
+		kitchen_client.get('humidity', function(err,reply) {
+			kitchen_humi = reply;
+		})
+
+		socket.emit('message', {'dinning_temp': dinning_temp, 'dinning_humi': dinning_humi, 'load': os.loadavg()[0]*25, 'kitchen_temp': kitchen_temp, 'kitchen_humi': kitchen_humi});
+	}, 500);
 });
 
 module.exports = app;

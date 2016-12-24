@@ -65,7 +65,6 @@
 		    config1.circleThickness = 0.1;
 		    config1.textVertPosition = 0.5;
 		    config1.waveAnimateTime = 1000;
-		    config1.displayPercent = false;
 		    var gauge2= loadLiquidFillGauge("fillgauge2", gauge_num[1], config1);
 		    var config2 = liquidFillGaugeDefaultSettings();
 		    config2.circleColor = "#D4AB6A";
@@ -123,11 +122,13 @@
 
 		    var socket = io.connect();
 		    socket.on('message', function(data) {
-			gauge1.update(data.message);
-			gauge2.update(data.date);
-			gauge3.update(data.load);
+				gauge1.update(data.dinning_temp);
+				gauge2.update(data.dinning_humi);
+				gauge3.update(data.load);
+				gauge4.update(data.kitchen_temp);
+				gauge5.update(data.kitchen_humi);
 		    });
-
+			
 
 		</script>
 	</body>
