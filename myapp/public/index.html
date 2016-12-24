@@ -55,8 +55,13 @@
 		<script language="JavaScript">
 
 		    var gauge_num = [0,0,0,0,0,0];
+			
+			var config0 = liquidFillGaugeDefaultSettings();
+			config0.circleThickness = 0.1;
+			config0.textVertPosition = 0.5;
+			config0.displayPercent = false;
+			var gauge1 = loadLiquidFillGauge("fillgauge1", gauge_num[0], config0);
 
-		    
 		    var config1 = liquidFillGaugeDefaultSettings();
 		    config1.circleColor = "#FF7777";
 		    config1.textColor = "#FF4444";
@@ -103,7 +108,8 @@
 		    config4.textSize = 0.75;
 		    config4.waveCount = 3;
 		    var gauge5 = loadLiquidFillGauge("fillgauge5", gauge_num[4], config4);
-		    var config5 = liquidFillGaugeDefaultSettings();
+		    
+			var config5 = liquidFillGaugeDefaultSettings();
 		    config5.circleThickness = 0.1;
 		    config5.circleColor = "#6DA398";
 		    config5.textColor = "#0E5144";
@@ -115,10 +121,9 @@
 		    config5.waveAnimate = true;
 		    config5.waveCount = 2;
 		    config5.waveOffset = 0.25;
-		    config5.textSize = 1.2;
-		    config5.displayPercent = false;
-		    var gauge6 = loadLiquidFillGauge("fillgauge6", gauge_num[5], config5);
-		    var gauge1 = loadLiquidFillGauge("fillgauge1", gauge_num[0], config5);
+		    config5.textSize = 1;
+			
+			var gauge6 = loadLiquidFillGauge("fillgauge6", gauge_num[5], config5);
 
 		    var socket = io.connect();
 		    socket.on('message', function(data) {

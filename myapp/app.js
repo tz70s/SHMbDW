@@ -89,7 +89,7 @@ serv_io.sockets.on('connection', function(socket) {
 			kitchen_cpu = reply;
 		});
 
-		socket.emit('message', {'dinning_temp': dinning_temp, 'dinning_humi': dinning_humi, 'dinning_cpu': dinning_cpu, 'kitchen_temp': kitchen_temp, 'kitchen_humi': kitchen_humi, 'kitchent_cpu': kitchen_cpu});
+		socket.emit('message', {'dinning_temp': dinning_temp, 'dinning_humi': dinning_humi, 'dinning_cpu': dinning_cpu, 'kitchen_temp': kitchen_temp, 'kitchen_humi': kitchen_humi, 'kitchen_cpu': kitchen_cpu});
 	}, 500);
 });
 
