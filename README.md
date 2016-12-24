@@ -42,10 +42,15 @@ npm install
 # INSTALL pm2 (optional)
 npm install pm2 -g
 ```
-* Configure Nginx up_stream
+* Install Nginx and configure
 ```BASH
-CONFIG IP_ADDRESS
-Default port is 8080 as app.js listening
+*NOTICE*
+# Install nginx version > 1.7
+sudo apt-get install -t strech nginx
+
+# CONFIG IP_ADDRESS
+# Default port is 8080 as app.js listening
+Reference configuration as /nginx.conf
 ```
 * Configure Redis
 ```BASH
