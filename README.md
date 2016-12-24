@@ -6,6 +6,8 @@
 
 ### Pre-requisition
 * Node.js
+* D3.js
+* [Liquid Fill Gauge](http://bl.ocks.org/brattonc/5e5ce9beee483220e2f6)
 * Express Framework
 * Socket.io
 * Node os-util
