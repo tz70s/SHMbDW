@@ -31,7 +31,7 @@ sudo ln -s "$(which nodejs)" /usr/bin/node
 sudo apt-get install npm
 
 
-git clone https://github.com/tz70s/IoT_FP.git
+git clone https://github.com/tz70s/SMHbDW.git
 cd IoT_FP/myapp/
 npm install
 
